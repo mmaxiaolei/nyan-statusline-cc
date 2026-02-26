@@ -10,6 +10,7 @@ import (
 	"github.com/nyan-statusline-cc/internal/formatter"
 	"github.com/nyan-statusline-cc/internal/git"
 	"github.com/nyan-statusline-cc/internal/model"
+	"github.com/nyan-statusline-cc/internal/state"
 	"github.com/nyan-statusline-cc/internal/stats"
 )
 
@@ -93,8 +94,12 @@ func renderLine1(data *model.SessionData, sep string) string {
 		parts = append(parts, Colorize(fmt.Sprintf("📥%s 📤%s", in, out), Cyan))
 	}
 
-	// Nyan Cat 动画
-	parts = append(parts, animation.NyanFrame())
+	// Nyan Cat 动画 + 处理状态指示器
+	nyan := animation.NyanFrame()
+	if indicator := processingIndicator(); indicator != "" {
+		nyan += indicator
+	}
+	parts = append(parts, nyan)
 
 	// 心跳动画
 	parts = append(parts, Colorize(animation.Heartbeat(), Red))
@@ -152,6 +157,21 @@ func renderLine2(sep string) string {
 		return ""
 	}
 	return strings.Join(parts, sep)
+}
+
+// processingIndicator 读取 hook 写入的状态文件, 返回处理状态指示器
+// 处理中返回 "⏳", 处理完成返回 "⌛💯"
+func processingIndicator() string {
+	execPath, err := os.Executable()
+	if err != nil {
+		return ""
+	}
+	binaryDir := filepath.Dir(execPath)
+
+	if state.IsProcessing(binaryDir) {
+		return "⏳"
+	}
+	return "⌛💯"
 }
 
 // calcContextPercent 计算上下文使用百分比
