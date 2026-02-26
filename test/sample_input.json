@@ -1,0 +1,24 @@
+{
+  "model": {
+    "display_name": "Claude Sonnet 4"
+  },
+  "workspace": {
+    "current_dir": "/Users/admin/project/opensource/nyan-statusline-cc"
+  },
+  "cost": {
+    "total_cost_usd": 0.1234,
+    "total_lines_added": 45,
+    "total_lines_removed": 12,
+    "total_duration_ms": 125000
+  },
+  "context_window": {
+    "context_window_size": 200000,
+    "total_input_tokens": 50000,
+    "total_output_tokens": 25000,
+    "current_usage": {
+      "input_tokens": 45000,
+      "cache_creation_input_tokens": 3000,
+      "cache_read_input_tokens": 5000
+    }
+  }
+}
