@@ -75,8 +75,8 @@ func TestRender_ContainsModelName(t *testing.T) {
 func TestRender_ContainsDirEmoji(t *testing.T) {
 	data := newTestSessionData()
 	result := Render(data)
-	if !strings.Contains(result, "📁") {
-		t.Error("Render output should contain directory emoji '📁'")
+	if !strings.Contains(result, "🗂️") {
+		t.Error("Render output should contain directory emoji '🗂️'")
 	}
 }
 

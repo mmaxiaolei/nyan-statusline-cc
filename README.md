@@ -71,6 +71,35 @@ make install
 
 重启 Claude Code 即可生效。
 
+## 自定义配置
+
+通过交互式菜单自定义状态栏显示内容:
+
+```bash
+~/.claude/nyan-statusline config
+```
+
+```
+🐱 Nyan Statusline 配置 meow~
+
+  ── Line 1 字段 ──
+  ✅ 🤖 模型名称
+  ✅ 📁 项目目录
+> ⬜ 🌈 上下文进度
+  ✅ 💰 成本
+  ...
+  ── Line 2 ──
+  ✅ ✨ 启用第二行
+  ✅ 📅 使用天数
+  ...
+
+↑↓ 移动  空格 切换  Enter 保存  q 取消
+```
+
+- 第一行始终显示，可单独开关每个字段
+- 第二行可整体开关，也可单独开关每个字段
+- 配置保存在 `~/.claude/nyan-config.json`，不存在时默认全部启用
+
 ## 环境要求
 
 - macOS (arm64 / amd64)
@@ -115,6 +144,7 @@ nyan-statusline-cc/
 │   ├── parser/              # stdin JSON 解析
 │   ├── formatter/           # 成本/时长/Token 格式化
 │   ├── git/                 # Git 分支和状态
+│   ├── config/              # 显示配置管理/交互式设置
 │   ├── stats/               # 统计缓存/成就系统
 │   ├── state/               # 处理状态读取 (hooks 事件驱动)
 │   ├── animation/           # 动画引擎
