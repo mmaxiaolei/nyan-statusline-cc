@@ -127,7 +127,8 @@ func renderLine1(data *model.SessionData, sep string, cfg *config.Config) string
 		parts = append(parts, Colorize(animation.Heartbeat(), Red))
 	}
 
-	return strings.Join(parts, sep)
+	termWidth := GetTerminalWidth()
+	return wrapParts(parts, sep, termWidth)
 }
 
 // renderLine2 渲染第二行: 统计信息

@@ -57,8 +57,8 @@ func TestRender_ContainsSeparator(t *testing.T) {
 func TestRender_ContainsModelEmoji(t *testing.T) {
 	data := newTestSessionData()
 	result := Render(data)
-	if !strings.Contains(result, "🤖") {
-		t.Error("Render output should contain model emoji '🤖'")
+	if !strings.Contains(result, "👾") {
+		t.Error("Render output should contain model emoji '👾'")
 	}
 }
 
